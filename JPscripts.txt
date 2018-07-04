@@ -1,0 +1,63 @@
+
+create database eswWebsite;
+
+CREATE TABLE jpUSER (
+    userID int NOT NULL auto_increment,
+    email varchar(255) NOT null,
+    password varchar(255) not null,
+    username varchar(255) not null,
+    PRIMARY KEY (userID)
+);
+
+
+
+
+
+CREATE TABLE jpCV (
+    cvID int not null auto_increment,
+    name varchar(255) not null,
+    address varchar(255) not null,
+    age int not null,
+    gender varchar(255) not null,
+    email varchar(255) not null,
+    contact varchar(255) not null,
+    extraCurricularActivites varchar(255) ,
+    userID int not null,
+    currentSalary float,
+    primary key (cvID),
+    FOREIGN KEY (userID) REFERENCES jpUSER(userID)
+);
+
+
+
+CREATE TABLE jpexperience (
+    experienceID int NOT NULL auto_increment,
+    cvID int not null,
+    organizationName varchar(255) NOT null,
+    startingYear datetime not null,
+    endingYear datetime not null,
+    designation varchar(255) not null,
+    PRIMARY KEY (experienceID),
+    FOREIGN KEY (cvID) REFERENCES jpCV(cvID)
+);
+
+CREATE TABLE jpQUALIFICATION (
+    qualificationID int NOT NULL auto_increment,
+    cvID int not null,
+    degreeName varchar(255) NOT null,
+    passingYear varchar(255) not null,
+    grades varchar(255) not null,
+    institutionName varchar(255) not null,
+    PRIMARY KEY (qualificationID),
+    FOREIGN KEY (cvID) REFERENCES jpCV(cvID)
+);
+
+CREATE TABLE jpOPENING (
+    openingID int NOT NULL auto_increment ,
+    openingType varchar(255) NOT null,
+    cvID int NOT NULL,
+    PRIMARY KEY (openingID),
+    FOREIGN KEY (cvID) REFERENCES jpCV(cvID)
+    
+);
+
